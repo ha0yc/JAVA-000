@@ -1,41 +1,41 @@
 package com.haoyc;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
+import java.lang.reflect.Method;
 
 public class TestClassLoader extends ClassLoader{
     private String inputFilePath;
-    private String outputFilePath;
     private String clazzName;
 
-    public TestClassLoader(String inputFilePath, String outputFilePath, String clazzName) {
+    public TestClassLoader(String inputFilePath, String clazzName) {
         this.inputFilePath = inputFilePath;
-        this.outputFilePath = outputFilePath;
         this.clazzName = clazzName;
     }
 
     public static void main(String[] args) {
-
+        TestClassLoader testClassLoader = new TestClassLoader("Hello.xlass", "Hello");
+        try {
+            Class clazz = testClassLoader.findClass(testClassLoader.clazzName);
+            Object ob = clazz.newInstance();
+            Method method = clazz.getMethod("hello");
+            method.invoke(ob);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
 
     @Override
     protected Class<?> findClass(String name) throws ClassNotFoundException {
         InputStream is = null;
-        OutputStream os = null;
+        File file = new File(inputFilePath);
+        byte[] bytes = null;
         try {
             is = new FileInputStream(inputFilePath);
-            os = new FileOutputStream(outputFilePath);
-            while (is.read() != 0) {
-                byte[] bytes = new byte[256];
-                is.read(bytes);
-                for (int i = 0; i < bytes.length; i++) {
-                    bytes[i] = (byte) (255 - bytes[i]);
-                }
-                os.write(bytes);
-                os.flush();
+            bytes = new byte[(int) file.length()];
+            is.read(bytes);
+            for (int i = 0; i < bytes.length; i++) {
+                bytes[i] = (byte) (255 - bytes[i]);
             }
         } catch (Exception ex) {
             throw new ClassNotFoundException("error happens while operating file");
@@ -47,29 +47,16 @@ public class TestClassLoader extends ClassLoader{
                     ex.printStackTrace();
                 }
             }
-
-            if (os != null) {
-                try {
-                    os.close();
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
         }
 
-        try {
-            is = new FileInputStream(outputFilePath);
-        } catch (Exception ex) {
-            throw new ClassNotFoundException("error happens while operating file");
-        } finally {
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
+        Class clazz = null;
+        if(bytes == null){
+            throw new ClassNotFoundException();
+        }else {
+            clazz = defineClass(name, bytes, 0, bytes.length);
         }
-        return super.findClass(name);
+
+        return clazz;
     }
+
 }
