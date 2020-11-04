@@ -13,6 +13,7 @@ import org.apache.http.impl.nio.client.CloseableHttpAsyncClient;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.concurrent.ExecutorService;
 
 import static io.netty.handler.codec.http.HttpResponseStatus.NO_CONTENT;
@@ -31,8 +32,18 @@ public class HttpOutboundHandler {
     }
     
     public void handle(final FullHttpRequest fullRequest, final ChannelHandlerContext ctx) {
-        final String url = this.backendUrl + fullRequest.uri();
+        final String url = chooseHost(fullRequest.uri()) + fullRequest.uri();
         fetchGet(fullRequest, ctx, url);
+    }
+
+    //随机选择实现
+    private String chooseHost(String uri) {
+        int num = new Random(100).nextInt();
+        if (num <= 50) {
+            return "http://localhost:9999";
+        } else {
+            return "http://localhost:8888";
+        }
     }
 
     private void fetchGet(final FullHttpRequest fullRequest, final ChannelHandlerContext ctx, final String url) {
