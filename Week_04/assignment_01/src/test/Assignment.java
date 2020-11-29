@@ -38,7 +38,7 @@ public class Assignment {
         //3.使用join阻塞当前线程
 //        final AtomicInteger value = new AtomicInteger(0);
 //        Thread thread = new Thread(new Task(value));
-//        thread.start();
+//        thread.stAart();
 //        thread.join();
 //        result = value.get();
 

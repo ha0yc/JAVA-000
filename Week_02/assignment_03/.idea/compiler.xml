@@ -7,7 +7,19 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="assignment_03" />
+        <module name="spring01" />
+        <module name="assignment_2_6" />
+        <module name="assignment_03 (1) (haoyc)" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="0301" target="8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="assignment_03 (1) (haoyc)" options="-parameters" />
+      <module name="spring01" options="-parameters" />
+    </option>
   </component>
 </project>
