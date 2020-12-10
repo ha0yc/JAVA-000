@@ -3,17 +3,9 @@
 <mapper namespace="org.haoyc.assignment.db.dao.ProductOrderMapper">
   <resultMap id="BaseResultMap" type="org.haoyc.assignment.db.object.ProductOrder">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
-    <result column="user_id" jdbcType="VARCHAR" property="userId" />
-    <result column="supplier_id" jdbcType="VARCHAR" property="supplierId" />
+    <result column="order_no" jdbcType="INTEGER" property="orderNo" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="product_num" jdbcType="INTEGER" property="productNum" />
-    <result column="product_amount_total" jdbcType="DECIMAL" property="productAmountTotal" />
-    <result column="pay_amount_total" jdbcType="DECIMAL" property="payAmountTotal" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
-    <result column="product_id" jdbcType="VARCHAR" property="productId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -74,8 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, order_no, user_id, supplier_id, status, product_num, product_amount_total, pay_amount_total, 
-    create_time, update_time, pay_time, product_id
+    id, order_no, user_id, status
   </sql>
   <select id="selectByExample" parameterType="org.haoyc.assignment.db.object.ProductOrderExample" resultMap="BaseResultMap">
     select
@@ -109,93 +100,23 @@
   </delete>
   <insert id="insert" parameterType="org.haoyc.assignment.db.object.ProductOrder">
     insert into product_order (id, order_no, user_id, 
-      supplier_id, status, product_num, 
-      product_amount_total, pay_amount_total, create_time, 
-      update_time, pay_time, product_id
-      )
-    values (#{id,jdbcType=INTEGER}, #{orderNo,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
-      #{supplierId,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{productNum,jdbcType=INTEGER}, 
-      #{productAmountTotal,jdbcType=DECIMAL}, #{payAmountTotal,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{payTime,jdbcType=TIMESTAMP}, #{productId,jdbcType=VARCHAR}
-      )
+      status)
+    values (#{id,jdbcType=INTEGER}, #{orderNo,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="org.haoyc.assignment.db.object.ProductOrder">
     insert into product_order
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="orderNo != null">
-        order_no,
-      </if>
-      <if test="userId != null">
-        user_id,
-      </if>
-      <if test="supplierId != null">
-        supplier_id,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-      <if test="productNum != null">
-        product_num,
-      </if>
-      <if test="productAmountTotal != null">
-        product_amount_total,
-      </if>
-      <if test="payAmountTotal != null">
-        pay_amount_total,
-      </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-      <if test="updateTime != null">
-        update_time,
-      </if>
-      <if test="payTime != null">
-        pay_time,
-      </if>
-      <if test="productId != null">
-        product_id,
-      </if>
+      <if test="id != null">id,</if>
+      <if test="orderNo != null">order_no,</if>
+      <if test="userId != null">user_id,</if>
+      <if test="status != null">status,</if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="orderNo != null">
-        #{orderNo,jdbcType=VARCHAR},
-      </if>
-      <if test="userId != null">
-        #{userId,jdbcType=VARCHAR},
-      </if>
-      <if test="supplierId != null">
-        #{supplierId,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=INTEGER},
-      </if>
-      <if test="productNum != null">
-        #{productNum,jdbcType=INTEGER},
-      </if>
-      <if test="productAmountTotal != null">
-        #{productAmountTotal,jdbcType=DECIMAL},
-      </if>
-      <if test="payAmountTotal != null">
-        #{payAmountTotal,jdbcType=DECIMAL},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="payTime != null">
-        #{payTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="productId != null">
-        #{productId,jdbcType=VARCHAR},
-      </if>
+      <if test="id != null">#{id,jdbcType=INTEGER},</if>
+      <if test="orderNo != null">#{orderNo,jdbcType=INTEGER},</if>
+      <if test="userId != null">#{userId,jdbcType=INTEGER},</if>
+      <if test="status != null">#{status,jdbcType=INTEGER},</if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="org.haoyc.assignment.db.object.ProductOrderExample" resultType="java.lang.Long">
@@ -211,37 +132,13 @@
         id = #{record.id,jdbcType=INTEGER},
       </if>
       <if test="record.orderNo != null">
-        order_no = #{record.orderNo,jdbcType=VARCHAR},
+        order_no = #{record.orderNo,jdbcType=INTEGER},
       </if>
       <if test="record.userId != null">
-        user_id = #{record.userId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.supplierId != null">
-        supplier_id = #{record.supplierId,jdbcType=VARCHAR},
+        user_id = #{record.userId,jdbcType=INTEGER},
       </if>
       <if test="record.status != null">
         status = #{record.status,jdbcType=INTEGER},
-      </if>
-      <if test="record.productNum != null">
-        product_num = #{record.productNum,jdbcType=INTEGER},
-      </if>
-      <if test="record.productAmountTotal != null">
-        product_amount_total = #{record.productAmountTotal,jdbcType=DECIMAL},
-      </if>
-      <if test="record.payAmountTotal != null">
-        pay_amount_total = #{record.payAmountTotal,jdbcType=DECIMAL},
-      </if>
-      <if test="record.createTime != null">
-        create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.updateTime != null">
-        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.payTime != null">
-        pay_time = #{record.payTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.productId != null">
-        product_id = #{record.productId,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -251,17 +148,9 @@
   <update id="updateByExample" parameterType="map">
     update product_order
     set id = #{record.id,jdbcType=INTEGER},
-      order_no = #{record.orderNo,jdbcType=VARCHAR},
-      user_id = #{record.userId,jdbcType=VARCHAR},
-      supplier_id = #{record.supplierId,jdbcType=VARCHAR},
-      status = #{record.status,jdbcType=INTEGER},
-      product_num = #{record.productNum,jdbcType=INTEGER},
-      product_amount_total = #{record.productAmountTotal,jdbcType=DECIMAL},
-      pay_amount_total = #{record.payAmountTotal,jdbcType=DECIMAL},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      pay_time = #{record.payTime,jdbcType=TIMESTAMP},
-      product_id = #{record.productId,jdbcType=VARCHAR}
+      order_no = #{record.orderNo,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -270,54 +159,22 @@
     update product_order
     <set>
       <if test="orderNo != null">
-        order_no = #{orderNo,jdbcType=VARCHAR},
+        order_no = #{orderNo,jdbcType=INTEGER},
       </if>
       <if test="userId != null">
-        user_id = #{userId,jdbcType=VARCHAR},
-      </if>
-      <if test="supplierId != null">
-        supplier_id = #{supplierId,jdbcType=VARCHAR},
+        user_id = #{userId,jdbcType=INTEGER},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
-      </if>
-      <if test="productNum != null">
-        product_num = #{productNum,jdbcType=INTEGER},
-      </if>
-      <if test="productAmountTotal != null">
-        product_amount_total = #{productAmountTotal,jdbcType=DECIMAL},
-      </if>
-      <if test="payAmountTotal != null">
-        pay_amount_total = #{payAmountTotal,jdbcType=DECIMAL},
-      </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="payTime != null">
-        pay_time = #{payTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="productId != null">
-        product_id = #{productId,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="org.haoyc.assignment.db.object.ProductOrder">
     update product_order
-    set order_no = #{orderNo,jdbcType=VARCHAR},
-      user_id = #{userId,jdbcType=VARCHAR},
-      supplier_id = #{supplierId,jdbcType=VARCHAR},
-      status = #{status,jdbcType=INTEGER},
-      product_num = #{productNum,jdbcType=INTEGER},
-      product_amount_total = #{productAmountTotal,jdbcType=DECIMAL},
-      pay_amount_total = #{payAmountTotal,jdbcType=DECIMAL},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      pay_time = #{payTime,jdbcType=TIMESTAMP},
-      product_id = #{productId,jdbcType=VARCHAR}
+    set order_no = #{orderNo,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
