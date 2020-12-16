@@ -9,9 +9,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class DemoResolver implements RpcfxResolver, InitializingBean {
+public class DemoResolver<T> implements RpcfxResolver, InitializingBean {
     private final String providePackages;
-    private Map<String, Object> providerMap = new HashMap<>();
+    private Map<String, T> providerMap = new HashMap<>();
 
     @Override
     public void afterPropertiesSet() throws Exception {
@@ -22,9 +22,9 @@ public class DemoResolver implements RpcfxResolver, InitializingBean {
             Class[] interfaces = c.getInterfaces();
             try {
                 if (interfaces.length == 0) {
-                    providerMap.put(c.getName(), c.newInstance());
+                    providerMap.put(c.getName(), (T) c.newInstance());
                 } else {
-                    providerMap.put(interfaces[0].getName(), c.newInstance());
+                    providerMap.put(interfaces[0].getName(), (T) c.newInstance());
                 }
 
             } catch (Exception ex) {
@@ -38,7 +38,7 @@ public class DemoResolver implements RpcfxResolver, InitializingBean {
     }
 
     @Override
-    public Object resolve(String serviceClass) {
+    public T resolve(String serviceClass) {
         return this.providerMap.get(serviceClass);
     }
 
