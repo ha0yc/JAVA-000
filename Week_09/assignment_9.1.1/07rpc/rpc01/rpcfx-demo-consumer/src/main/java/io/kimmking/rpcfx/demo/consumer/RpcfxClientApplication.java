@@ -1,13 +1,12 @@
 package io.kimmking.rpcfx.demo.consumer;
 
-import io.kimmking.rpcfx.client.Rpcfx;
+import com.alibaba.fastjson.JSON;
+import io.kimmking.rpcfx.client.agent.bytebuddy.RpcFxByteBuddyAgent;
 import io.kimmking.rpcfx.demo.api.Order;
 import io.kimmking.rpcfx.demo.api.OrderService;
 import io.kimmking.rpcfx.demo.api.User;
 import io.kimmking.rpcfx.demo.api.UserService;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
 public class RpcfxClientApplication {
 
 	// 二方库
@@ -15,22 +14,16 @@ public class RpcfxClientApplication {
 	// nexus, userserivce -> userdao -> user
 	//
 
-	public static void main(String[] args) {
-
-		// UserService service = new xxx();
-		// service.findById
-
-		UserService userService = Rpcfx.create(UserService.class, "http://localhost:8080/");
+	public static void main(String[] args) throws Exception{
+		String url = "http://localhost:8080/";
+		UserService userService = new RpcFxByteBuddyAgent().create(UserService.class, url);
 		User user = userService.findById(1);
-		System.out.println("find user id=1 from server: " + user.getName());
+		System.out.println(JSON.toJSONString(user));
 
-		OrderService orderService = Rpcfx.create(OrderService.class, "http://localhost:8080/");
+		OrderService orderService = new RpcFxByteBuddyAgent().create(OrderService.class, url);
 		Order order = orderService.findOrderById(1992129);
-		System.out.println(String.format("find order name=%s, amount=%f",order.getName(),order.getAmount()));
+		System.out.println(JSON.toJSONString(order));
 
-		// 新加一个OrderService
-
-//		SpringApplication.run(RpcfxClientApplication.class, args);
 	}
 
 }

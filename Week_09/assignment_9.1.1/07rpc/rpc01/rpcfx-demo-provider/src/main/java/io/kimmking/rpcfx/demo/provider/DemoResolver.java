@@ -1,7 +1,7 @@
 package io.kimmking.rpcfx.demo.provider;
 
-import io.kimmking.rpcfx.annotation.Provider;
 import io.kimmking.rpcfx.api.RpcfxResolver;
+import io.kimmking.rpcfx.server.annotation.Provider;
 import org.reflections.Reflections;
 import org.springframework.beans.factory.InitializingBean;
 
@@ -41,5 +41,4 @@ public class DemoResolver<T> implements RpcfxResolver, InitializingBean {
     public T resolve(String serviceClass) {
         return this.providerMap.get(serviceClass);
     }
-
 }

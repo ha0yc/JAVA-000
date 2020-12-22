@@ -35,6 +35,4 @@ CREATE TABLE `product_order` (
   `pay_time` datetime NOT NULL COMMENT '订单结算时间',
   `product_id` varchar(45) NOT NULL COMMENT '商品编号',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`),
-  UNIQUE KEY `order_no_UNIQUE` (`order_no`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
+) ENGINE=InnoDB 

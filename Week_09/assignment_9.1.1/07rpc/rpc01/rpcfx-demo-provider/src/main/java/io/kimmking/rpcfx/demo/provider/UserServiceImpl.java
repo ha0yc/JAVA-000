@@ -1,6 +1,6 @@
 package io.kimmking.rpcfx.demo.provider;
 
-import io.kimmking.rpcfx.annotation.Provider;
+import io.kimmking.rpcfx.server.annotation.Provider;
 import io.kimmking.rpcfx.demo.api.User;
 import io.kimmking.rpcfx.demo.api.UserService;
 

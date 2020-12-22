@@ -16,7 +16,6 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 public final class Rpcfx {
-
     static {
         ParserConfig.getGlobalInstance().addAccept("io.kimmking");
     }
@@ -45,20 +44,25 @@ public final class Rpcfx {
 
         @Override
         public Object invoke(Object proxy, Method method, Object[] params) throws Throwable {
+            return stub(this.serviceClass, method.getName(), params, this.url);
+        }
+
+        public Object stub(Class<?> clazz, String method, Object[] params, String url) throws IOException{
             RpcfxRequest request = new RpcfxRequest();
-            request.setServiceClass(this.serviceClass.getName());
-            request.setMethod(method.getName());
+            request.setServiceClass(clazz.getName());
+            request.setMethod(method);
             request.setParams(params);
+
 
             RpcfxResponse response = post(request, url);
 
             // 这里判断response.status，处理异常
             // 考虑封装一个全局的RpcfxException
 
-            return JSON.parse(response.getResult().toString());
+            return JSON.parseObject(response.getResult().toString());
         }
 
-        private RpcfxResponse post(RpcfxRequest req, String url) throws IOException {
+        public static RpcfxResponse post(RpcfxRequest req, String url) throws IOException {
             String reqJson = JSON.toJSONString(req);
             System.out.println("req json: "+reqJson);
 
@@ -73,5 +77,6 @@ public final class Rpcfx {
             System.out.println("resp json: "+respJson);
             return JSON.parseObject(respJson, RpcfxResponse.class);
         }
+
     }
 }

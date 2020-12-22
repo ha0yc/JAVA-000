@@ -1,4 +1,4 @@
-package io.kimmking.rpcfx.annotation;
+package io.kimmking.rpcfx.server.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
