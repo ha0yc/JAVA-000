@@ -3,8 +3,11 @@ package io.haoyc.dubbo.hmily.account.db.dao;
 import io.haoyc.dubbo.hmily.account.db.object.BalanceAccount;
 import io.haoyc.dubbo.hmily.account.db.object.BalanceAccountExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface BalanceAccountMapper {
     long countByExample(BalanceAccountExample example);
 

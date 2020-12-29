@@ -1,0 +1,17 @@
+server:
+  port: 8082
+dubbo:
+  application:
+    id: dubbo_hmily_transaction
+    name: dubbo_hmily_transaction
+  registry:
+    address: zookeeper://127.0.0.1:2181
+  monitor:
+    protocol: registry
+  metadata-report:
+    address: zookeeper://127.0.0.1:2181
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/hmily?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8
+    username: root
+    password: root

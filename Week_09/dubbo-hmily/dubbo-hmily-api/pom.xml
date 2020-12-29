@@ -9,13 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>dubbo-hmily-transaction-service</artifactId>
-    <dependencies>
-        <dependency>
-            <groupId>io.haoyc</groupId>
-            <artifactId>dubbo-hmily-api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
+    <artifactId>dubbo-hmily-api</artifactId>
+
 
 </project>
