@@ -1,8 +1,9 @@
 package io.haoyc.dubbo.hmily.account.db.object;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class BalanceAccount {
+public class BalanceAccount implements Serializable {
     private Integer id;
 
     private Integer userId;
