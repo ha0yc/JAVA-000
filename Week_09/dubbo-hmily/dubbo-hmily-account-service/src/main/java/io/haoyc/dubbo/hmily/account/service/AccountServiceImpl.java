@@ -37,7 +37,6 @@ public class AccountServiceImpl implements AccountService {
             ex.printStackTrace();
             return new AccountTransactionDTO(0, "error", ex.getMessage());
         }
-
     }
 
     public void confirm(AccountTranctionParameter atp) {

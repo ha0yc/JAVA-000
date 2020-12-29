@@ -7,7 +7,6 @@ import org.apache.shardingsphere.infra.config.algorithm.ShardingSphereAlgorithmC
 import org.apache.shardingsphere.sharding.api.config.ShardingRuleConfiguration;
 import org.apache.shardingsphere.sharding.api.config.rule.ShardingTableRuleConfiguration;
 import org.apache.shardingsphere.sharding.api.config.strategy.sharding.StandardShardingStrategyConfiguration;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.transaction.jta.JtaAutoConfiguration;
@@ -22,7 +21,6 @@ import java.util.Map;
 import java.util.Properties;
 
 @ComponentScan("io.haoyc")
-@MapperScan(basePackages = "io.haoyc")
 @DubboComponentScan(basePackages = "io.haoyc")
 @SpringBootApplication(exclude = JtaAutoConfiguration.class)
 public class MainApplication {

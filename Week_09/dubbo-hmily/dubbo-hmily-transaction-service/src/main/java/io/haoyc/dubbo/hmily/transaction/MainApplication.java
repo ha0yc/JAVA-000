@@ -14,10 +14,9 @@ import org.springframework.context.annotation.ComponentScan;
 
 @ComponentScan(basePackages = "io.haoyc")
 @DubboComponentScan(basePackages = "io.haoyc")
-@SpringBootConfiguration
 @SpringBootApplication(exclude = JtaAutoConfiguration.class)
 public class MainApplication {
-    @DubboReference(version = "1.0.0", url = "dubbo://127.0.0.1:12346")
+    @DubboReference(version = "1.0.0", url = "dubbo://127.0.0.1:12345")
     AccountService accountService;
 
     public static void main(String[] args) {
