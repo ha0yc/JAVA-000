@@ -1,6 +1,7 @@
 package io.haoyc.redis;
 
 //import io.haoyc.redis.lock.RedisLock;
+import io.haoyc.redis.counter.RedisCounter;
 import io.haoyc.redis.lock.RedisLock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
@@ -8,6 +9,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import redis.clients.jedis.JedisPool;
 
 import java.util.UUID;
 
@@ -23,6 +25,12 @@ public class SpringRedisPracticeApplication {
 
 	@Autowired
 	RedisLock redisLock;
+
+	@Autowired
+	RedisCounter redisCounter;
+
+	@Autowired
+	JedisPool jedisPool;
 
 	@Bean
 	public ApplicationRunner lockRunner() {
@@ -45,6 +53,16 @@ public class SpringRedisPracticeApplication {
 
 			redisLock.release(timeStamp, requestId1);
 
+		};
+	}
+
+	@Bean
+	public ApplicationRunner counterRunner() {
+		return args -> {
+			String uuid = UUID.randomUUID().toString().replace("-","");
+			redisCounter.count(uuid);
+			System.out.println(jedisPool.getResource().get(uuid));
+			jedisPool.getResource().del(uuid);
 		};
 	}
 

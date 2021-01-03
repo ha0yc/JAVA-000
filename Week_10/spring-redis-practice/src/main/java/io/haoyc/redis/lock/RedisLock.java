@@ -7,8 +7,6 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.params.SetParams;
 
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 
 @Component
 public class RedisLock {
