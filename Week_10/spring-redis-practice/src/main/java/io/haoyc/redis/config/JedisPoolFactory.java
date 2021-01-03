@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
@@ -22,4 +24,13 @@ public class JedisPoolFactory {
         JedisPool pool = new JedisPool(config,properties.getHost(),properties.getPort(),100);
         return pool;
     }
+
+    @Bean
+    public JedisConnectionFactory redisConnectionFactory() {
+        RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration();
+        redisStandaloneConfiguration.setHostName(properties.getHost());
+        redisStandaloneConfiguration.setPort(properties.getPort());
+        return new JedisConnectionFactory(redisStandaloneConfiguration);
+    }
+
 }

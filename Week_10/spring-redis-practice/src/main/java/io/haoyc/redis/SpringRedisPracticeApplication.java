@@ -3,6 +3,7 @@ package io.haoyc.redis;
 //import io.haoyc.redis.lock.RedisLock;
 import io.haoyc.redis.counter.RedisCounter;
 import io.haoyc.redis.lock.RedisLock;
+import io.haoyc.redis.ps.pub.RedisMessagePublisher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
@@ -63,6 +64,17 @@ public class SpringRedisPracticeApplication {
 			redisCounter.count(uuid);
 			System.out.println(jedisPool.getResource().get(uuid));
 			jedisPool.getResource().del(uuid);
+		};
+	}
+
+	@Autowired
+	RedisMessagePublisher publisher;
+
+	@Bean
+	public ApplicationRunner pubsubRunner() {
+		return args -> {
+			publisher.publish("query order");
+			System.out.println("message send: " + "query order");
 		};
 	}
 
