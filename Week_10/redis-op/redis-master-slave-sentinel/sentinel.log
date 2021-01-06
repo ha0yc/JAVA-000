@@ -1,0 +1,43 @@
+7429:X 06 Jan 2021 15:50:39.068 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+7429:X 06 Jan 2021 15:50:39.068 # Redis version=6.0.9, bits=64, commit=00000000, modified=0, pid=7429, just started
+7429:X 06 Jan 2021 15:50:39.068 # Configuration loaded
+7429:X 06 Jan 2021 15:50:39.071 * Increased maximum number of open files to 10032 (it was originally set to 256).
+7429:X 06 Jan 2021 15:50:39.073 * Running mode=sentinel, port=26379.
+7429:X 06 Jan 2021 15:50:39.073 # Sentinel ID is 86ec97b2dc9493e18cc1451fb84e16304c49aeb8
+7429:X 06 Jan 2021 15:50:39.073 # +monitor master mymaster 127.0.0.1 6381 quorum 1
+7429:X 06 Jan 2021 15:51:09.108 # +sdown master mymaster 127.0.0.1 6381
+7429:X 06 Jan 2021 15:51:09.108 # +odown master mymaster 127.0.0.1 6381 #quorum 1/1
+7429:X 06 Jan 2021 15:51:09.110 # +new-epoch 3
+7429:X 06 Jan 2021 15:51:09.110 # +try-failover master mymaster 127.0.0.1 6381
+7429:X 06 Jan 2021 15:51:09.113 # +vote-for-leader 86ec97b2dc9493e18cc1451fb84e16304c49aeb8 3
+7429:X 06 Jan 2021 15:51:09.113 # +elected-leader master mymaster 127.0.0.1 6381
+7429:X 06 Jan 2021 15:51:09.114 # +failover-state-select-slave master mymaster 127.0.0.1 6381
+7429:X 06 Jan 2021 15:51:09.216 # +selected-slave slave 127.0.0.1:6379 127.0.0.1 6379 @ mymaster 127.0.0.1 6381
+7429:X 06 Jan 2021 15:51:09.216 * +failover-state-send-slaveof-noone slave 127.0.0.1:6379 127.0.0.1 6379 @ mymaster 127.0.0.1 6381
+7429:X 06 Jan 2021 15:51:09.283 * +failover-state-wait-promotion slave 127.0.0.1:6379 127.0.0.1 6379 @ mymaster 127.0.0.1 6381
+7429:X 06 Jan 2021 15:51:10.147 # +promoted-slave slave 127.0.0.1:6379 127.0.0.1 6379 @ mymaster 127.0.0.1 6381
+7429:X 06 Jan 2021 15:51:10.147 # +failover-state-reconf-slaves master mymaster 127.0.0.1 6381
+7429:X 06 Jan 2021 15:51:10.201 # +failover-end master mymaster 127.0.0.1 6381
+7429:X 06 Jan 2021 15:51:10.201 # +switch-master mymaster 127.0.0.1 6381 127.0.0.1 6379
+7429:X 06 Jan 2021 15:51:10.202 * +slave slave 127.0.0.1:6381 127.0.0.1 6381 @ mymaster 127.0.0.1 6379
+7429:X 06 Jan 2021 15:51:19.226 * +slave slave 127.0.0.1:6380 127.0.0.1 6380 @ mymaster 127.0.0.1 6379
+7429:X 06 Jan 2021 15:52:48.719 # +sdown master mymaster 127.0.0.1 6379
+7429:X 06 Jan 2021 15:52:48.719 # +odown master mymaster 127.0.0.1 6379 #quorum 1/1
+7429:X 06 Jan 2021 15:52:48.719 # +new-epoch 4
+7429:X 06 Jan 2021 15:52:48.719 # +try-failover master mymaster 127.0.0.1 6379
+7429:X 06 Jan 2021 15:52:48.722 # +vote-for-leader 86ec97b2dc9493e18cc1451fb84e16304c49aeb8 4
+7429:X 06 Jan 2021 15:52:48.722 # +elected-leader master mymaster 127.0.0.1 6379
+7429:X 06 Jan 2021 15:52:48.723 # +failover-state-select-slave master mymaster 127.0.0.1 6379
+7429:X 06 Jan 2021 15:52:48.780 # +selected-slave slave 127.0.0.1:6380 127.0.0.1 6380 @ mymaster 127.0.0.1 6379
+7429:X 06 Jan 2021 15:52:48.780 * +failover-state-send-slaveof-noone slave 127.0.0.1:6380 127.0.0.1 6380 @ mymaster 127.0.0.1 6379
+7429:X 06 Jan 2021 15:52:48.871 * +failover-state-wait-promotion slave 127.0.0.1:6380 127.0.0.1 6380 @ mymaster 127.0.0.1 6379
+7429:X 06 Jan 2021 15:52:48.951 # +promoted-slave slave 127.0.0.1:6380 127.0.0.1 6380 @ mymaster 127.0.0.1 6379
+7429:X 06 Jan 2021 15:52:48.951 # +failover-state-reconf-slaves master mymaster 127.0.0.1 6379
+7429:X 06 Jan 2021 15:52:49.035 * +slave-reconf-sent slave 127.0.0.1:6381 127.0.0.1 6381 @ mymaster 127.0.0.1 6379
+7429:X 06 Jan 2021 15:52:50.052 * +slave-reconf-inprog slave 127.0.0.1:6381 127.0.0.1 6381 @ mymaster 127.0.0.1 6379
+7429:X 06 Jan 2021 15:52:50.052 * +slave-reconf-done slave 127.0.0.1:6381 127.0.0.1 6381 @ mymaster 127.0.0.1 6379
+7429:X 06 Jan 2021 15:52:50.113 # +failover-end master mymaster 127.0.0.1 6379
+7429:X 06 Jan 2021 15:52:50.113 # +switch-master mymaster 127.0.0.1 6379 127.0.0.1 6380
+7429:X 06 Jan 2021 15:52:50.114 * +slave slave 127.0.0.1:6381 127.0.0.1 6381 @ mymaster 127.0.0.1 6380
+7429:X 06 Jan 2021 15:52:50.114 * +slave slave 127.0.0.1:6379 127.0.0.1 6379 @ mymaster 127.0.0.1 6380
+7429:X 06 Jan 2021 15:53:00.183 # +sdown slave 127.0.0.1:6379 127.0.0.1 6379 @ mymaster 127.0.0.1 6380
