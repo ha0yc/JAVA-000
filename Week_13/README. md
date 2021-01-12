@@ -1,0 +1,5 @@
+## 说明
+
+* springboot集成activemq客户端参见xxx，从main方法启动即可
+* springboot集成kafka客户端参见xxx，从main方法启动即可
+* kafka集群配置部署操作手册参见xxx
